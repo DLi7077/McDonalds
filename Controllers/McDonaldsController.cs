@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-namespace McDonalds.Controllers;
+using Microsoft.EntityFrameworkCore;
+
+namespace McDonalds.Models;
 
 [ApiController]
-
+[Route("api/McDonalds")]
 public class McDonaldsController : ControllerBase
 {
   private readonly McDonaldsDBContext _context;
@@ -18,5 +20,4 @@ public class McDonaldsController : ControllerBase
   {
     return await _context.Customers.ToListAsync();
   }
-
 }
