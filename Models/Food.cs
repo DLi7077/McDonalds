@@ -12,6 +12,5 @@ namespace McDonalds.Models
     public int sodium { get; set; }
     public int sugar { get; set; }
     public int fat { get; set; }
-
   }
 }

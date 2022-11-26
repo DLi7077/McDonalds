@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
-
+using McDonalds;
 
 namespace McDonalds.Models;
 
@@ -18,7 +18,7 @@ public class McDonaldsController : Controller
   // retrieving string params https://stackoverflow.com/a/41577487
   [HttpGet]
   [Route("api/food/")]
-  public async Task<ActionResult<IEnumerable<Food>>> GetFood()
+  public async Task<Response<IEnumerable<Food>>> GetFood()
   {
     string sortBy = HttpContext.Request.Query["sortBy"].ToString();
     string sortDir = HttpContext.Request.Query["sortDir"].ToString();
@@ -26,7 +26,7 @@ public class McDonaldsController : Controller
     bool descending = sortDir == "desc";
 
     IQueryable<Food> query = from food in _context.Food select food;
-    if (sortBy.Length == 0) return Ok(query);
+    if (sortBy.Length == 0) return new(200, "ok", query);
     if (descending)
     {
       query = query.OrderByDescending(p => EF.Property<object>(p, sortBy));
@@ -36,14 +36,14 @@ public class McDonaldsController : Controller
       query = query.OrderBy(p => EF.Property<object>(p, sortBy));
     }
 
-    return Ok(query);
+    return new(200, "here you go", query);
   }
 
   // 
   // error response https://stackoverflow.com/a/21682621
   [HttpPost]
   [Route("api/food")]
-  public async Task<ActionResult<IEnumerable<Food>>> CreateFood([FromBody] Food food)
+  public async Task<Response<IEnumerable<Food>>> CreateFood([FromBody] Food food)
   {
     // see if food already exists
     bool foodExists = _context.Food.Any(f => f.name == food.name);
@@ -51,8 +51,7 @@ public class McDonaldsController : Controller
     if (foodExists)
     {
       String duplicateError = $"{food.name} already exists in the database";
-      HttpContext.Response.StatusCode = 409;
-      return Json(new { error = duplicateError });
+      return new(409, duplicateError, null);
     }
 
     var query = from calories in _context.Set<Food>() select calories;
@@ -60,13 +59,13 @@ public class McDonaldsController : Controller
     await _context.Food.AddAsync(food);
     await _context.SaveChangesAsync();
 
-    return await _context.Food.ToListAsync();
+    return new(200, "dude it worked", await _context.Food.ToListAsync());
   }
 
   [HttpPost]
   [Route("api/foods")]
   // https://stackoverflow.com/questions/18667633/how-can-i-use-async-with-foreach
-  public async Task<ActionResult<IEnumerable<Food>>> CreateFoods([FromBody] List<Food> foods)
+  public async Task<Response<IEnumerable<Food>>> CreateFoods([FromBody] List<Food> foods)
   {
     for (int i = 0; i < foods.Count; i++)
     {
@@ -74,15 +73,13 @@ public class McDonaldsController : Controller
       if (foodExists)
       {
         String duplicateError = $"{foods[i].name} already exists in the database";
-        HttpContext.Response.StatusCode = 409;
-        return Json(new { error = duplicateError });
+        return new(409, duplicateError, null);
       }
-
       await _context.Food.AddAsync(foods[i]);
     }
     await _context.SaveChangesAsync();
 
-    return await _context.Food.ToListAsync();
+    return new(200, "dude it worked", await _context.Food.ToListAsync());
   }
 
   // Update a food in the table
