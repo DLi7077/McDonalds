@@ -15,7 +15,6 @@ public class McDonaldsController : ControllerBase
     _context = context;
   }
 
-  // GET: customers
   [HttpGet]
   [Route("api/food/")]
   public async Task<ActionResult<IEnumerable<Food>>> getFood()
