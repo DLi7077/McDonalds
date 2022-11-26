@@ -27,3 +27,4 @@ D:\Documents\CUNY Hunter College\Hunter Fall 2022\Intro to APIs\McDonalds\obj\De
 D:\Documents\CUNY Hunter College\Hunter Fall 2022\Intro to APIs\McDonalds\obj\Debug\net6.0\McDonalds.pdb
 D:\Documents\CUNY Hunter College\Hunter Fall 2022\Intro to APIs\McDonalds\obj\Debug\net6.0\McDonalds.genruntimeconfig.cache
 D:\Documents\CUNY Hunter College\Hunter Fall 2022\Intro to APIs\McDonalds\obj\Debug\net6.0\ref\McDonalds.dll
+D:\Documents\CUNY Hunter College\Hunter Fall 2022\Intro to APIs\McDonalds\bin\Debug\net6.0\seeding.json
