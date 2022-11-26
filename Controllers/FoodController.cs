@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
-using McDonalds;
 
 namespace McDonalds.Models;
 
@@ -18,7 +16,7 @@ public class McDonaldsController : Controller
   // retrieving string params https://stackoverflow.com/a/41577487
   [HttpGet]
   [Route("api/food/")]
-  public async Task<Response<IEnumerable<Food>>> GetFood()
+  public async Task<Response<IEnumerable<Food>>> GetFoods()
   {
     string sortBy = HttpContext.Request.Query["sortBy"].ToString();
     string sortDir = HttpContext.Request.Query["sortDir"].ToString();
@@ -39,7 +37,6 @@ public class McDonaldsController : Controller
     return new(200, "here you go", query);
   }
 
-  // 
   // error response https://stackoverflow.com/a/21682621
   [HttpPost]
   [Route("api/food")]

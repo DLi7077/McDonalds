@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using McDonalds.Models;
+using McDonalds.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,18 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// https://stackoverflow.com/a/53809870
+// dependency inject then seed
+using (var scope = app.Services.CreateScope())
+{
+  McDonaldsDBContext _context = scope.ServiceProvider.GetRequiredService<McDonaldsDBContext>();
+
+  List<Food> foodList = Seeder.LoadJson("./Seeding/seeding.json");
+
+  await Seeder.ClearTable(_context);
+  await Seeder.SeedFoods(_context, foodList);
+}
 
 app.Run();
 
