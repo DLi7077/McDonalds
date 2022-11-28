@@ -304,14 +304,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
   "description": "success",
   "result": [
     {
-      "combo": {
-        "id": 3,
-        "name": "Big Mac Meal",
-        "price": 10.29
-      },
+      "name": "Big Mac Meal",
+      "price": 10.29,
+      "calories": 870,
+      "protein": 30,
+      "carbs": 88,
+      "sodium": 1270,
+      "sugar": 9,
+      "fat": 45,
       "foods": [
         {
-          "id": 86,
+          "id": 170,
           "name": "Big Mac",
           "price": 5.59,
           "calories": 550,
@@ -322,7 +325,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 30
         },
         {
-          "id": 94,
+          "id": 178,
           "name": "Medium Fries",
           "price": 3.99,
           "calories": 320,
@@ -335,14 +338,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
       ]
     },
     {
-      "combo": {
-        "id": 4,
-        "name": "Quarter Pounder with Cheese Meal",
-        "price": 9.59
-      },
+      "name": "Quarter Pounder with Cheese Meal",
+      "price": 9.59,
+      "calories": 840,
+      "protein": 35,
+      "carbs": 85,
+      "sodium": 1400,
+      "sugar": 10,
+      "fat": 41,
       "foods": [
         {
-          "id": 87,
+          "id": 171,
           "name": "Quarter Pounder with Cheese",
           "price": 5.79,
           "calories": 520,
@@ -353,7 +359,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 26
         },
         {
-          "id": 94,
+          "id": 178,
           "name": "Medium Fries",
           "price": 3.99,
           "calories": 320,
@@ -366,14 +372,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
       ]
     },
     {
-      "combo": {
-        "id": 5,
-        "name": "Double Quarter Pounder with Cheese Meal",
-        "price": 11.99
-      },
+      "name": "Double Quarter Pounder with Cheese Meal",
+      "price": 11.99,
+      "calories": 1060,
+      "protein": 53,
+      "carbs": 86,
+      "sodium": 1620,
+      "sugar": 10,
+      "fat": 57,
       "foods": [
         {
-          "id": 88,
+          "id": 172,
           "name": "Double Quarter Pounder with Cheese",
           "price": 6.99,
           "calories": 740,
@@ -384,7 +393,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 42
         },
         {
-          "id": 94,
+          "id": 178,
           "name": "Medium Fries",
           "price": 3.99,
           "calories": 320,
@@ -397,14 +406,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
       ]
     },
     {
-      "combo": {
-        "id": 6,
-        "name": "2 Filet O Fish",
-        "price": 7
-      },
+      "name": "2 Filet O Fish",
+      "price": 7,
+      "calories": 780,
+      "protein": 38,
+      "carbs": 78,
+      "sodium": 1160,
+      "sugar": 10,
+      "fat": 38,
       "foods": [
         {
-          "id": 90,
+          "id": 174,
           "name": "Filet-O-Fish",
           "price": 4.99,
           "calories": 390,
@@ -415,7 +427,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 19
         },
         {
-          "id": 90,
+          "id": 174,
           "name": "Filet-O-Fish",
           "price": 4.99,
           "calories": 390,
@@ -428,14 +440,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
       ]
     },
     {
-      "combo": {
-        "id": 7,
-        "name": "Crispy Chicken Sandwich Meal",
-        "price": 9.39
-      },
+      "name": "Crispy Chicken Sandwich Meal",
+      "price": 9.39,
+      "calories": 790,
+      "protein": 31,
+      "carbs": 89,
+      "sodium": 1400,
+      "sugar": 9,
+      "fat": 35,
       "foods": [
         {
-          "id": 91,
+          "id": 175,
           "name": "Crispy Chicken Sandwich",
           "price": 4.89,
           "calories": 470,
@@ -446,7 +461,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 20
         },
         {
-          "id": 94,
+          "id": 178,
           "name": "Medium Fries",
           "price": 3.99,
           "calories": 320,
@@ -459,14 +474,17 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
       ]
     },
     {
-      "combo": {
-        "id": 8,
-        "name": "Deluxe Crispy Chicken Sandwich Meal",
-        "price": 9.99
-      },
+      "name": "Deluxe Crispy Chicken Sandwich Meal",
+      "price": 9.99,
+      "calories": 850,
+      "protein": 32,
+      "carbs": 91,
+      "sodium": 1310,
+      "sugar": 10,
+      "fat": 41,
       "foods": [
         {
-          "id": 92,
+          "id": 176,
           "name": "Deluxe Crispy Chicken Sandwich",
           "price": 5.59,
           "calories": 530,
@@ -477,7 +495,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
           "fat": 26
         },
         {
-          "id": 94,
+          "id": 178,
           "name": "Medium Fries",
           "price": 3.99,
           "calories": 320,
