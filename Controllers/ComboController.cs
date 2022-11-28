@@ -15,7 +15,7 @@ public class ComboController : Controller
 
   [HttpGet]
   [Route("api/combo")]
-  public async Task<Response<List<AllCombosResponse>>> GetCombos()
+  public async Task<Response<List<ComboResponse>>> GetCombos()
   {
     // triple table join - https://stackoverflow.com/a/26488779
     IQueryable<ComboFoodPair> query =
@@ -31,7 +31,7 @@ public class ComboController : Controller
       row => new ComboFoodPair { combo = row.combo, food = row.food }
     ).ToList();
 
-    List<AllCombosResponse> result = Utils.GroupByFood(tripleJoinResult);
+    List<ComboResponse> result = Utils.GroupByFood(tripleJoinResult);
 
     return new(200, "success", result);
   }
@@ -71,6 +71,8 @@ public class ComboController : Controller
     }
     await _context.SaveChangesAsync();
 
-    return new(200, "ok", new ComboResponse { name = combo.name, price = combo.price, foods = linkedFoods });
+    ComboResponse result = Utils.createComboResponse(combo.name!, combo.price, linkedFoods);
+
+    return new(200, "ok", result);
   }
 }
