@@ -4,6 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace McDonalds.Seeding;
 
+public static class JsonParser<Any>
+{
+  public static List<Any> LoadJson(string fileName)
+  {
+    using (StreamReader r = new StreamReader(fileName))
+    {
+      string json = r.ReadToEnd();
+      List<Any> items = JsonSerializer.Deserialize<List<Any>>(json)!;
+      return items;
+    }
+  }
+}
 public static class Seeder
 {
   public static async Task ClearTable(McDonaldsDBContext _context)
@@ -12,19 +24,10 @@ public static class Seeder
     _context.Database.ExecuteSqlRaw("DELETE FROM ComboItem");
     _context.Database.ExecuteSqlRaw("DELETE FROM Combo");
     _context.Database.ExecuteSqlRaw("DELETE FROM Food");
-    Console.WriteLine("Cleared Food Table");
+
     await _context.SaveChangesAsync();
   }
 
-  public static List<Food> LoadJson(string fileName)
-  {
-    using (StreamReader r = new StreamReader(fileName))
-    {
-      string json = r.ReadToEnd();
-      List<Food> items = JsonSerializer.Deserialize<List<Food>>(json)!;
-      return items;
-    }
-  }
 
   public static async Task SeedFoods(McDonaldsDBContext _context, List<Food> foods)
   {
@@ -40,4 +43,49 @@ public static class Seeder
     }
     await _context.SaveChangesAsync();
   }
+
+  public static async Task SeedMeals(McDonaldsDBContext _context, List<ComboRequest> combos)
+  {
+    for (int iteration = 0; iteration < combos.Count; iteration++)
+    {
+      ComboRequest combo = combos[iteration];
+
+      bool comboExists = _context.Combo.Any(c => c.name == combo.name);
+      if (comboExists)
+      {
+        Console.WriteLine($"{combo.name} already exists, skipping.");
+        continue;
+      }
+      // look for foods in database, throw error if not found
+      List<Food> linkedFoods = new List<Food>();
+      bool conflict = false;
+      for (int i = 0; i < combo.foods?.Count; i++)
+      {
+        string currFood = combo.foods[i];
+        var existingFood = _context.Food.FirstOrDefault(f => f.name == currFood);
+        if (existingFood == null)
+        {
+          Console.WriteLine($"{currFood} does not exist in the database");
+          conflict = true;
+          break;
+        }
+        linkedFoods.Add(existingFood);
+      }
+      if (conflict) continue;
+
+      await _context.Combo.AddAsync(new Combo { name = combo.name, price = combo.price });
+      await _context.SaveChangesAsync();
+
+      Combo createdCombo = _context.Combo.FirstOrDefault(c => c.name == combo.name)!;
+      int comboId = createdCombo.Id;
+
+      for (int i = 0; i < linkedFoods.Count; i++)
+      {
+        int currFoodId = linkedFoods[i].Id;
+        await _context.ComboItem.AddAsync(new ComboItem { ComboId = comboId, FoodId = currFoodId });
+      }
+    }
+    await _context.SaveChangesAsync();
+  }
+
 }
