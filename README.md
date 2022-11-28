@@ -257,8 +257,43 @@ Response Body - an array of all food objects
 // Updated food list in database, same format as retrieving list of foods.
 ```
 
+## Add a bunch of food
+
+`POST: https://localhost:7091/api/foods` <- `foods` is plural here (used for bulk insertion)
+<br/>
+Request Body - takes an array of food objects
+
+```json
+[
+  "status_code": 200,
+  "description": "ok",
+  "result": [
+    {
+    "name": "Hamburger",
+    "price": 1.79,
+    "calories": 250,
+    "protein": 12,
+    "carbs": 31,
+    "sodium": 510,
+    "sugar": 6,
+    "fat": 9
+    },
+    ...
+  ]
+]
+```
+
+Response Body - an array of all food objects
+
+```js
+// Updated food list in database, same format as retrieving list of foods.
+```
+
 ## Retrieve all combos
 
+`GET: https://localhost:7091/api/combo`
+
+returns an array of all combos and the included foods, along with the total nutrients
 <details>
 <summary>
 Example Output with <code>https://localhost:7091/api/combo</code></summary>
@@ -457,40 +492,7 @@ Example Output with <code>https://localhost:7091/api/combo</code></summary>
   ]
 }
 ```
-
 </details>
-
-## Add a bunch of food
-
-`POST: https://localhost:7091/api/foods` <- `foods` is plural here (used for bulk insertion)
-<br/>
-Request Body - takes an array of food objects
-
-```json
-[
-  "status_code": 200,
-  "description": "ok",
-  "result": [
-    {
-    "name": "Hamburger",
-    "price": 1.79,
-    "calories": 250,
-    "protein": 12,
-    "carbs": 31,
-    "sodium": 510,
-    "sugar": 6,
-    "fat": 9
-    },
-    ...
-  ]
-]
-```
-
-Response Body - an array of all food objects
-
-```js
-// Updated food list in database, same format as retrieving list of foods.
-```
 
 ## Add a combo
 
@@ -515,9 +517,15 @@ Response Body - the created document with the name and price and all foods in it
   "result": {
     "name": "Big Mac Meal",
     "price": 9.2,
+    "calories": 870,
+    "protein": 30,
+    "carbs": 88,
+    "sodium": 1270,
+    "sugar": 9,
+    "fat": 45,
     "foods": [
       {
-        "id": 5,
+        "id": 170,
         "name": "Big Mac",
         "price": 5.59,
         "calories": 550,
@@ -528,7 +536,7 @@ Response Body - the created document with the name and price and all foods in it
         "fat": 30
       },
       {
-        "id": 13,
+        "id": 178,
         "name": "Medium Fries",
         "price": 3.99,
         "calories": 320,
