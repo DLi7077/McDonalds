@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Big Mac Meal",
+    "price": 10.29,
+    "foods": ["Big Mac", "Medium Fries"]
+  },
+  {
+    "name": "Quarter Pounder with Cheese Meal",
+    "price": 9.59,
+    "foods": ["Quarter Pounder with Cheese", "Medium Fries"]
+  },
+  {
+    "name": "Double Quarter Pounder with Cheese Meal",
+    "price": 11.99,
+    "foods": ["Double Quarter Pounder with Cheese", "Medium Fries"]
+  },
+  {
+    "name": "2 Filet O Fish",
+    "price": 7.0,
+    "foods": ["Filet-O-Fish", "Filet-O-Fish"]
+  },
+  {
+    "name": "Crispy Chicken Sandwich Meal",
+    "price": 9.39,
+    "foods": ["Crispy Chicken Sandwich", "Medium Fries"]
+  },
+  {
+    "name": "Deluxe Crispy Chicken Sandwich Meal",
+    "price": 9.99,
+    "foods": ["Deluxe Crispy Chicken Sandwich", "Medium Fries"]
+  }
+]

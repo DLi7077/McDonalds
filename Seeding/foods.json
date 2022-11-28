@@ -178,5 +178,29 @@
     "sodium": 1670,
     "sugar": 0,
     "fat": 49
+  },
+  {
+    "name": "Apple Pie",
+    "price": 1.59,
+    "calories": 230,
+    "protein": 2,
+    "carbs": 33,
+    "sodium": 100,
+    "sugar": 14,
+    "fat": 11
+  },
+  
+  {
+    "name": "Vanilla Cone",
+    "price": 2.39,
+    "calories": 200,
+    "protein": 5,
+    "carbs": 33,
+    "sodium": 80,
+    "sugar": 23,
+    "fat": 5
+  },
+  {
+    "name": ""
   }
 ]

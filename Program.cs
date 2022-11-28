@@ -13,7 +13,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-//   app.UseDeveloperExeceptionPage();
+  //   app.UseDeveloperExeceptionPage();
 }
 
 app.UseHttpsRedirection();
@@ -28,10 +28,12 @@ using (var scope = app.Services.CreateScope())
 {
   McDonaldsDBContext _context = scope.ServiceProvider.GetRequiredService<McDonaldsDBContext>();
 
-  List<Food> foodList = Seeder.LoadJson("./Seeding/seeding.json");
+  List<Food> foodList = JsonParser<Food>.LoadJson("./Seeding/foods.json");
+  List<ComboRequest> comboList = JsonParser<ComboRequest>.LoadJson("./Seeding/meals.json");
 
   await Seeder.ClearTable(_context);
   await Seeder.SeedFoods(_context, foodList);
+  await Seeder.SeedMeals(_context, comboList);
 }
 
 app.Run();
