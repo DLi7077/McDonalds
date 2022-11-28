@@ -9,6 +9,8 @@ public static class Seeder
   public static async Task ClearTable(McDonaldsDBContext _context)
   {
     // clear every table
+    _context.Database.ExecuteSqlRaw("DELETE FROM ComboItem");
+    _context.Database.ExecuteSqlRaw("DELETE FROM Combo");
     _context.Database.ExecuteSqlRaw("DELETE FROM Food");
     Console.WriteLine("Cleared Food Table");
     await _context.SaveChangesAsync();

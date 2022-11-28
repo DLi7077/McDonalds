@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 namespace McDonalds.Models;
 
 [ApiController]
-public class McDonaldsController : Controller
+public class FoodController : Controller
 {
   private readonly McDonaldsDBContext _context;
 
-  public McDonaldsController(McDonaldsDBContext context)
+  public FoodController(McDonaldsDBContext context)
   {
     _context = context;
   }
@@ -34,20 +34,20 @@ public class McDonaldsController : Controller
       query = query.OrderBy(p => EF.Property<object>(p, sortBy));
     }
 
-    return new(200, "here you go", query);
+    return new(200, "success", query);
   }
 
   // error response https://stackoverflow.com/a/21682621
   [HttpPost]
   [Route("api/food")]
-  public async Task<Response<IEnumerable<Food>>> CreateFood([FromBody] Food food)
+  public async Task<Response<Food>> CreateFood([FromBody] Food food)
   {
     // see if food already exists
     bool foodExists = _context.Food.Any(f => f.name == food.name);
 
     if (foodExists)
     {
-      String duplicateError = $"{food.name} already exists in the database";
+      string duplicateError = $"{food.name} already exists in the database";
       return new(409, duplicateError, null);
     }
 
@@ -56,7 +56,7 @@ public class McDonaldsController : Controller
     await _context.Food.AddAsync(food);
     await _context.SaveChangesAsync();
 
-    return new(200, "dude it worked", await _context.Food.ToListAsync());
+    return new(200, "success", food);
   }
 
   [HttpPost]
@@ -69,14 +69,14 @@ public class McDonaldsController : Controller
       bool foodExists = _context.Food.Any(f => f.name == foods[i].name);
       if (foodExists)
       {
-        String duplicateError = $"{foods[i].name} already exists in the database";
+        string duplicateError = $"{foods[i].name} already exists in the database";
         return new(409, duplicateError, null);
       }
       await _context.Food.AddAsync(foods[i]);
     }
     await _context.SaveChangesAsync();
 
-    return new(200, "dude it worked", await _context.Food.ToListAsync());
+    return new(200, "success", await _context.Food.ToListAsync());
   }
 
   // Update a food in the table

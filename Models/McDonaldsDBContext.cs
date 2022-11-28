@@ -18,6 +18,9 @@ namespace McDonalds.Models
       options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 
-    public DbSet<Food> Food { get; set; } = null!;
+    public DbSet<Food> Food { get; set; }
+    public DbSet<Combo> Combo { get; set; }
+    public DbSet<ComboItem> ComboItem { get; set; }
+
   }
 }
