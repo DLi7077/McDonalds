@@ -189,7 +189,6 @@
     "sugar": 14,
     "fat": 11
   },
-  
   {
     "name": "Vanilla Cone",
     "price": 2.39,
@@ -199,8 +198,5 @@
     "sodium": 80,
     "sugar": 23,
     "fat": 5
-  },
-  {
-    "name": ""
   }
 ]

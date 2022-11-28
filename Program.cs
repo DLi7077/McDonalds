@@ -35,6 +35,10 @@ using (var scope = app.Services.CreateScope())
   await Seeder.SeedFoods(_context, foodList);
   await Seeder.SeedMeals(_context, comboList);
 }
+app.UseCors(builder => builder
+      .AllowAnyOrigin()
+      .AllowAnyHeader()
+      .AllowAnyMethod());
 
 app.Run();
 
